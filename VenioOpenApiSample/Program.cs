@@ -15,7 +15,7 @@ namespace VenioOpenApiSample
                 UserAgent = "Apidog/1.0.0 (https://www.apidog.com)"
             };
             var client = new RestClient(option);
-          
+
             var request = new RestRequest();
             request.Method = Method.Post;
             request.AddParameter("grant_type", "bypass");
@@ -29,7 +29,7 @@ namespace VenioOpenApiSample
             var accessToken = dataResponse?.First.First;
             Console.WriteLine(accessToken);
             Customer createCustomer01 = new Customer();
-            CreateUpdateCustomerRequest customer01= new CreateUpdateCustomerRequest();
+            CreateUpdateCustomerRequest customer01 = new CreateUpdateCustomerRequest();
             customer01.CustomerName = "openapi create new customer";
             customer01.CustomerState = "3";
             customer01.CustomerStatus = "0";
@@ -43,8 +43,15 @@ namespace VenioOpenApiSample
                     LocationType="2",
                 }
             };
-            
-            createCustomer01.CreateUpdate(accessToken);
+
+            // createCustomer01.CreateUpdate(accessToken);
+            Quotation quotation01 = new Quotation();
+            //เส้นเรียกดูข้อมูลหลายๆชุด
+            quotation01.Enquiry(accessToken);
+            //เส้นสร้างแก้ไขข้อมูลใบ้เสนอราคา
+            quotation01.CreateUpdateQuotation(accessToken);
+            //เส้นการเปลี่ยนใบ้เสนอราคาให้กล้ายเป็นใบ้สั่งขาย
+            quotation01.ConvertToSalesOrder(accessToken);
         }
     }
 }
