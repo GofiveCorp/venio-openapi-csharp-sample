@@ -33,8 +33,17 @@ namespace VenioOpenApiSample.Models
         [JsonProperty("classificationName")]
         public string ClassificationName { get; set; }
 
+        /// <summary>
+        /// กรณีcustomer type=2 individual
+        /// </summary>
+        [JsonProperty("contact")]
+        public Contact Contact { get; set; }
+
+        /// <summary>
+        /// กรณีcustomertype เป็น business
+        /// </summary>
         [JsonProperty("contacts")]
-        public Contacts Contacts { get; set; }
+        public Contact[] Contacts { get; set; }
 
         /// <summary>
         /// ชื่อรองลูกค้า เช่น ชื่อลูกค้าภาษาอื่นๆ
@@ -63,14 +72,14 @@ namespace VenioOpenApiSample.Models
         /// <summary>
         /// อีเมลลูกค้า
         /// </summary>
-        [JsonProperty("customerEmail")]
+        [JsonProperty("customerEmail", NullValueHandling = NullValueHandling.Ignore)]
         public string CustomerEmail { get; set; }
 
         /// <summary>
         /// เพศลูกค้า [1 = Male , 2 = Female]
         /// </summary>
         [JsonProperty("customerGender")]
-        public string CustomerGender { get; set; }
+        public long? CustomerGender { get; set; }
 
         /// <summary>
         /// กลุ่มลูกค้า [*ทำการสร้างให้ใหม่เมื่อข้อมูลไม่ตรงกัน]
@@ -78,15 +87,15 @@ namespace VenioOpenApiSample.Models
         [JsonProperty("customerGroupName")]
         public string CustomerGroupName { get; set; }
 
-        [JsonProperty("customerIncome")]
-        public string CustomerIncome { get; set; }
+        [JsonProperty("customerIncome", NullValueHandling = NullValueHandling.Ignore)]
+        public double? CustomerIncome { get; set; }
 
         /// <summary>
         /// สถานภาพสมรส [1 = Single , 2 = Engaged , 3 = Married , 4 = Separated , 5 = Disvorced , 6 =
         /// Widowed]
         /// </summary>
         [JsonProperty("customerMaritalStatus")]
-        public string CustomerMaritalStatus { get; set; }
+        public long? CustomerMaritalStatus { get; set; }
 
         /// <summary>
         /// เบอร์มือถือลูกค้า
@@ -134,13 +143,13 @@ namespace VenioOpenApiSample.Models
         /// สถานะของลูกค้า Required : 1 = Lead , 2 = Prospect , 3 = Customer
         /// </summary>
         [JsonProperty("customerState")]
-        public string CustomerState { get; set; }
+        public long CustomerState { get; set; }
 
         /// <summary>
         /// สถานะการใช้งาน 0 = active , 1 = ended (Required Note) , 2 = closed (Required Note)
         /// </summary>
         [JsonProperty("customerStatus")]
-        public string CustomerStatus { get; set; }
+        public long CustomerStatus { get; set; }
 
         [JsonProperty("customerTags")]
         public string[] CustomerTags { get; set; }
@@ -155,7 +164,7 @@ namespace VenioOpenApiSample.Models
         /// ประเภท 1 = Business , 2 = individual
         /// </summary>
         [JsonProperty("customerType")]
-        public string CustomerType { get; set; }
+        public long CustomerType { get; set; }
 
         [JsonProperty("customFields")]
         public CustomField[] CustomFields { get; set; }
@@ -168,10 +177,10 @@ namespace VenioOpenApiSample.Models
 
         /// <summary>
         /// สถานะลูกค้า 1 = New , 2 = Followup , 3 = Unqualified , 4 = Interested
-        /// [*ถ้าไม่มีการส่งข้อมูลมา Lead = 1 ,Prospect =  4 , Customer = 4]
+        /// [*ถ้าไม่มีการส่งข้อมูลมา Lead = 1 ,Prospect =  2, Customer = 3]
         /// </summary>
         [JsonProperty("leadStatus")]
-        public string LeadStatus { get; set; }
+        public long? LeadStatus { get; set; }
 
         /// <summary>
         /// รหัสพนังงาน
@@ -205,7 +214,7 @@ namespace VenioOpenApiSample.Models
         /// ละติจูด
         /// </summary>
         [JsonProperty("latitude")]
-        public string Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         /// <summary>
         /// ที่อยู่
@@ -223,16 +232,16 @@ namespace VenioOpenApiSample.Models
         /// ประเภทสถานที่ [1 = billing address , 2 = shipping address]
         /// </summary>
         [JsonProperty("locationType")]
-        public string LocationType { get; set; }
+        public long LocationType { get; set; }
 
         /// <summary>
         /// ลองจิจูด
         /// </summary>
         [JsonProperty("longitude")]
-        public string Longitude { get; set; }
+        public double? Longitude { get; set; }
     }
 
-    public partial class Contacts
+    public partial class Contact
     {
         /// <summary>
         /// วันเกิด ของผู้ติดต่อ โดยมี Format : "YYYY-MM-DD"
@@ -283,7 +292,12 @@ namespace VenioOpenApiSample.Models
         /// true = active , false = inactive
         /// </summary>
         [JsonProperty("contactStatus")]
-        public string ContactStatus { get; set; }
+        public bool? ContactStatus { get; set; }
+        /// <summary>
+        /// Social Account ของผู้ติดต่อ
+        /// </summary>
+        [JsonProperty("contactSocialAccount")]
+        public CustomerSocialAccount ContactSocialAccount { get; set; }
     }
 
     public partial class CustomField
@@ -291,45 +305,40 @@ namespace VenioOpenApiSample.Models
         /// <summary>
         /// ชื่อหัวข้อฟิลด์
         /// </summary>
-        [JsonProperty("customFieldName", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("customFieldName")]
         public string CustomFieldName { get; set; }
 
         /// <summary>
         /// ข้อมูลของฟิลด์
         /// </summary>
-        [JsonProperty("customFieldValue", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("customFieldValue")]
         public string[] CustomFieldValue { get; set; }
     }
 
-    /// <summary>
-    /// Social Account ของลูกค้า
-    /// </summary>
     public partial class CustomerSocialAccount
     {
-        [JsonProperty("facebook")]
+        [JsonProperty("facebook", NullValueHandling = NullValueHandling.Ignore)]
         public string Facebook { get; set; }
 
-        [JsonProperty("instagram")]
+        [JsonProperty("instagram", NullValueHandling = NullValueHandling.Ignore)]
         public string Instagram { get; set; }
 
-        [JsonProperty("line")]
+        [JsonProperty("line", NullValueHandling = NullValueHandling.Ignore)]
         public string Line { get; set; }
 
-        [JsonProperty("linkedin")]
+        [JsonProperty("linkedin", NullValueHandling = NullValueHandling.Ignore)]
         public string Linkedin { get; set; }
 
-        [JsonProperty("skype")]
+        [JsonProperty("skype", NullValueHandling = NullValueHandling.Ignore)]
         public string Skype { get; set; }
 
-        [JsonProperty("telegram")]
+        [JsonProperty("telegram", NullValueHandling = NullValueHandling.Ignore)]
         public string Telegram { get; set; }
 
-        [JsonProperty("wechat")]
+        [JsonProperty("wechat", NullValueHandling = NullValueHandling.Ignore)]
         public string Wechat { get; set; }
 
-        [JsonProperty("whatsapp")]
+        [JsonProperty("whatsapp", NullValueHandling = NullValueHandling.Ignore)]
         public string Whatsapp { get; set; }
     }
-
-  
 }

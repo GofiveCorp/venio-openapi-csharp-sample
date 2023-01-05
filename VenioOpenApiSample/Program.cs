@@ -28,30 +28,21 @@ namespace VenioOpenApiSample
             var dataResponse = JObject.Parse(response.Content);
             var accessToken = dataResponse?.First.First;
             Console.WriteLine(accessToken);
-            Customer createCustomer01 = new Customer();
-            CreateUpdateCustomerRequest customer01 = new CreateUpdateCustomerRequest();
-            customer01.CustomerName = "openapi create new customer";
-            customer01.CustomerState = "3";
-            customer01.CustomerStatus = "0";
-            customer01.CustomerType = "2";
-            customer01.CustomerBirthdate = "2000-06-04";
-            customer01.Addresses = new Address[]
-            {
-                new Address{
-                    LocationAddress="samutsakhon",
-                    LocationName="SamutSakhon",
-                    LocationType="2",
-                }
-            };
 
-            // createCustomer01.CreateUpdate(accessToken);
-            Quotation quotation01 = new Quotation();
+            Customer createCustomer01 = new Customer();
+          // createCustomer01.CreateUpdate(accessToken);
+          // createCustomer01.GetCustomerByCustomerId(accessToken);
+
+           Quotation quotation01 = new Quotation();
             //เส้นเรียกดูข้อมูลหลายๆชุด
-            quotation01.Enquiry(accessToken);
+            // quotation01.Enquiry(accessToken);
             //เส้นสร้างแก้ไขข้อมูลใบ้เสนอราคา
-            quotation01.CreateUpdateQuotation(accessToken);
+            //  quotation01.CreateUpdateQuotation(accessToken);
             //เส้นการเปลี่ยนใบ้เสนอราคาให้กล้ายเป็นใบ้สั่งขาย
-            quotation01.ConvertToSalesOrder(accessToken);
+            // quotation01.ConvertToSalesOrder(accessToken);
+
+            Products product01 = new Products();
+            product01.CreateUpdateProduct(accessToken);
         }
     }
 }
