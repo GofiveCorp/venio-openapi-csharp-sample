@@ -30,19 +30,24 @@ namespace VenioOpenApiSample
             Console.WriteLine(accessToken);
 
             Customer createCustomer01 = new Customer();
-          // createCustomer01.CreateUpdate(accessToken);
-          // createCustomer01.GetCustomerByCustomerId(accessToken);
+            // createCustomer01.CreateUpdate(accessToken);
+            // createCustomer01.GetCustomerByCustomerId(accessToken);
 
-           Quotation quotation01 = new Quotation();
-            //เส้นเรียกดูข้อมูลหลายๆชุด
+            Quotation quotation01 = new Quotation();
             // quotation01.Enquiry(accessToken);
-            //เส้นสร้างแก้ไขข้อมูลใบ้เสนอราคา
-            //  quotation01.CreateUpdateQuotation(accessToken);
-            //เส้นการเปลี่ยนใบ้เสนอราคาให้กล้ายเป็นใบ้สั่งขาย
+            // quotation01.CreateUpdateQuotation(accessToken);
             // quotation01.ConvertToSalesOrder(accessToken);
 
             Products product01 = new Products();
-            product01.CreateUpdateProduct(accessToken);
+            // product01.CreateUpdateProduct(accessToken);
+            // product01.GetTicketId(accessToken);
+            //product01.GetProductByProductCode(accessToken);
+            //product01.GetProducts(accessToken);
+
+            SalesOrder salesOrder01 = new SalesOrder();
+            //salesOrder01.CreateUpdateSalesOrder(accessToken);
+            //salesOrder01.GetSalesOrderBySalesOrderNo(accessToken);
+            //salesOrder01.GetHeaderTemplate(accessToken);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace VenioOpenApiSample.Models
         /// รหัสผู้ติดต่อ
         /// </summary>
         [JsonProperty("contactId")]
-        public string ContactId { get; set; }
+        public long? ContactId { get; set; }
 
         /// <summary>
         /// สกุลเงิน เช่น "THB" , "USD" [ถ้าไม่ส่ง หรือ null ระบบจะหยิบ System Currency ของ Company
@@ -43,19 +43,19 @@ namespace VenioOpenApiSample.Models
         /// discountValue)
         /// </summary>
         [JsonProperty("discountType")]
-        public string DiscountType { get; set; }
+        public bool? DiscountType { get; set; }
 
         /// <summary>
         /// ส่วนลดสินค้า (*ตัว Discount ต้องมีค่าไม่เกิน ราคาของสินค้าทั้งหมด)
         /// </summary>
         [JsonProperty("discountValue")]
-        public string DiscountValue { get; set; }
+        public double? DiscountValue { get; set; }
 
         /// <summary>
         /// หัวเอกสารใน PDF [ถ้าไม่ส่งค่ามาให้เท่ากับ header default company]
         /// </summary>
         [JsonProperty("headerTemplateId")]
-        public string HeaderTemplateId { get; set; }
+        public long? HeaderTemplateId { get; set; }
 
         /// <summary>
         /// เงื่อนไขการชำระเงิน
@@ -66,7 +66,7 @@ namespace VenioOpenApiSample.Models
         /// <summary>
         /// ที่อยู่จัดส่งสินค้า
         /// </summary>
-        [JsonProperty("recipientAddress")]
+        [JsonProperty("recipientAddress", NullValueHandling = NullValueHandling.Ignore)]
         public string RecipientAddress { get; set; }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace VenioOpenApiSample.Models
         /// สถานะใบสั่งขาย [1 = draft 2 = open 3 = completed 4 = rejected 5 = cancelled]
         /// </summary>
         [JsonProperty("salesOrderStatus")]
-        public string SalesOrderStatus { get; set; }
+        public long SalesOrderStatus { get; set; }
 
         /// <summary>
         /// หัวเรื่องใบสั่งขาย Required
@@ -130,7 +130,7 @@ namespace VenioOpenApiSample.Models
         /// การคำนวณภาษีมูลค่าเพิ่ม Required [true = ไม่รวมภาษีมูลค่าเพิ่ม false = รวมภาษีมูลค่าเพิ่ม]
         /// </summary>
         [JsonProperty("vatCalculation")]
-        public string VatCalculation { get; set; }
+        public bool VatCalculation { get; set; }
     }
 
     public partial class SalesOrderDetail
@@ -140,19 +140,19 @@ namespace VenioOpenApiSample.Models
         /// discountValue)
         /// </summary>
         [JsonProperty("discountType")]
-        public string DiscountType { get; set; }
+        public bool? DiscountType { get; set; }
 
         /// <summary>
         /// ส่วนลดสินค้า (*ตัว Discount ต้องมีค่าไม่เกิน ราคาของสินค้านั้น)
         /// </summary>
         [JsonProperty("discountValue")]
-        public string DiscountValue { get; set; }
+        public double? DiscountValue { get; set; }
 
         /// <summary>
         /// ราคาสินค้าที่ต้องการกำหนด [null = ราคาสินค้าตามในระบบ]
         /// </summary>
         [JsonProperty("price")]
-        public string Price { get; set; }
+        public double? Price { get; set; }
 
         /// <summary>
         /// รหัสสินค้า Required
@@ -182,21 +182,22 @@ namespace VenioOpenApiSample.Models
         /// จำนวนสินค้า (*กรอกจำนวนได้ไม่เกินสินค้าที่มีใน stock จนกว่าจะมีการเปิด Permission บน Web)
         /// </summary>
         [JsonProperty("qty")]
-        public string Qty { get; set; }
+        public long? Qty { get; set; }
 
         /// <summary>
         /// ภาษีมูลค่าเพิ่ม(%) (*ถ้าไม่มีอยู่ในระบบ ให้สร้างใหม่ กรณี inactive ระบบ จะแสดง error)
         /// [ถ้าส่ง Null มา ระบบจะ Set เป็น No Vat]
         /// </summary>
         [JsonProperty("vatTaxValue")]
-        public string VatTaxValue { get; set; }
+        public double? VatTaxValue { get; set; }
 
         /// <summary>
         /// ภาษีหัก ณ ที่จ่าย(%) (*ถ้าไม่มีอยู่ในระบบ จะแสดง error) [ถ้าส่ง Null มา ระบบจะ Set เป็น
         /// none]
         /// </summary>
         [JsonProperty("whtTaxValue")]
-        public string WhtTaxValue { get; set; }
+        public double? WhtTaxValue { get; set; }
     }
+
 }
 

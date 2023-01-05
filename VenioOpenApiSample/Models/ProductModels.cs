@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 
 namespace VenioOpenApiSample.Models
 {
@@ -41,7 +43,7 @@ namespace VenioOpenApiSample.Models
         /// แจ้งเตือนเมื่อสต็อกคงเหลือ
         /// </summary>
         [JsonProperty("lowStockAlert", NullValueHandling = NullValueHandling.Ignore)]
-        public double? LowStockAlert { get; set; }
+        public long? LowStockAlert { get; set; }
 
         [JsonProperty("prices", NullValueHandling = NullValueHandling.Ignore)]
         public ProductPrice[] Prices { get; set; }
@@ -107,7 +109,7 @@ namespace VenioOpenApiSample.Models
         /// จำนวนสินค้า [เป็นจำนวนสินค้าของ Single Product]
         /// </summary>
         [JsonProperty("qty", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Qty { get; set; }
+        public long? Qty { get; set; }
 
         /// <summary>
         /// หมวดหมู่ย่อย [ถ้ามีการส่งข้อมูลมาไม่ครงกับระบบ ทางระบบจะทำการสร้าง Category ให้]
@@ -137,13 +139,13 @@ namespace VenioOpenApiSample.Models
         /// จัดการข้อมูลคลังสินค้า [true = อนุญาตให้จัดการ , false = ไม่อนุญาตให้จัดการ]
         /// </summary>
         [JsonProperty("trackInventory", NullValueHandling = NullValueHandling.Ignore)]
-        public bool TrackInventory { get; set; }
+        public bool? TrackInventory { get; set; }
 
         /// <summary>
         /// การรับประกันสินค้า [true = รับประกัน , false = ไม่รับประกัน]
         /// </summary>
         [JsonProperty("useWarranty", NullValueHandling = NullValueHandling.Ignore)]
-        public bool UseWarranty { get; set; }
+        public bool? UseWarranty { get; set; }
 
         /// <summary>
         /// true = ทำรายการขายได้ , false = ทำรายการขายไม่ได้]
@@ -212,16 +214,16 @@ namespace VenioOpenApiSample.Models
         /// <summary>
         /// แจ้งเตือนเมื่อสต็อกคงเหลือ
         /// </summary>
-        [JsonProperty("lowStockAlert", NullValueHandling = NullValueHandling.Ignore)]
-        public string LowStockAlert { get; set; }
+        [JsonProperty("lowStockAlert")]
+        public int LowStockAlert { get; set; }
 
         [JsonProperty("prices", NullValueHandling = NullValueHandling.Ignore)]
-        public ProductVariantPrice[] Prices { get; set; }
+        public ProductPrice[] Prices { get; set; }
 
         /// <summary>
         /// รหัสบาร์โค้ด
         /// </summary>
-        [JsonProperty("productBarcode", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("productBarcode")]
         public string ProductBarcode { get; set; }
 
         /// <summary>
@@ -252,7 +254,7 @@ namespace VenioOpenApiSample.Models
         /// จำนวนสินค้า
         /// </summary>
         [JsonProperty("qty", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Qty { get; set; }
+        public long? Qty { get; set; }
     }
 
     public partial class Attribute
@@ -269,33 +271,21 @@ namespace VenioOpenApiSample.Models
         [JsonProperty("attributeValueName", NullValueHandling = NullValueHandling.Ignore)]
         public string AttributeValueName { get; set; }
     }
-
-    public partial class ProductVariantPrice
+    public partial class ProductsRequest
     {
         /// <summary>
-        /// ชื่อระดับราคา
+        /// สถานะสินค้า
         /// </summary>
-        [JsonProperty("priceTierName", NullValueHandling = NullValueHandling.Ignore)]
-        public string PriceTierName { get; set; }
+        [JsonProperty("status")]
+        public bool[] Status { get; set; }
 
         /// <summary>
-        /// ราคาปกติ
+        /// จำนวนรายการสินค้าที่อยากแสดง
         /// </summary>
-        [JsonProperty("regularPrice", NullValueHandling = NullValueHandling.Ignore)]
-        public double? RegularPrice { get; set; }
-
-        /// <summary>
-        /// ราคาลด
-        /// </summary>
-        [JsonProperty("salePrice", NullValueHandling = NullValueHandling.Ignore)]
-        public double? SalePrice { get; set; }
-
-        /// <summary>
-        /// ภาษีมูลค่าเพิ่ม [ถ้าไม่มีอยู๋ในระบบ จะทำการสร้างให้]
-        /// </summary>
-        [JsonProperty("vat", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Vat { get; set; }
+        [JsonProperty("take")]
+        public long Take { get; set; }
     }
+
 
 }
 

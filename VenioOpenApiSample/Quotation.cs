@@ -56,7 +56,7 @@ namespace VenioOpenApiSample
             createUpdateQuotation01.CustomerCode = "daisy";
             createUpdateQuotation01.StaffCode = "Admin01";
             createUpdateQuotation01.VatCalculation = true;
-            createUpdateQuotation01.ReferenceNo = "DRAFT2301000004";//ต้องกรอกเลขอ้างอิ้งใบ้เสนอราคาในกรณีที่เป็นการแก้ไข
+            // createUpdateQuotation01.ReferenceNo = "DRAFT2301000004";//ต้องกรอกเลขอ้างอิ้งใบ้เสนอราคาในกรณีที่เป็นการแก้ไข
             createUpdateQuotation01.QuotationDate = "2023-01-04";
             createUpdateQuotation01.QuotationValidUntil = "2023-02-04";
             createUpdateQuotation01.QuotationDetails = new QuotationDetail[]

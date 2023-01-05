@@ -46,7 +46,7 @@ namespace VenioOpenApiSample
                 Facebook = ""
             };
             customerRequest01.LeadStatus = 4;
-            customerRequest01.Contacts=new Contact[]{ new Contact{
+            customerRequest01.Contacts = new Contact[]{ new Contact{
 
                     ContactName="Contact002",
                     ContactBirthdate="2000-06-04",
@@ -55,7 +55,7 @@ namespace VenioOpenApiSample
 
 
             }};
-            customerRequest01.Owners =new String[] { "Admin01" };
+            customerRequest01.Owners = new String[] { "Admin01" };
             var body = JsonConvert.SerializeObject(customerRequest01);
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             RestResponse response = client.Execute(request);
@@ -69,11 +69,11 @@ namespace VenioOpenApiSample
             {
                 Timeout = -1
             };
-            var client = new RestClient(option);        
+            var client = new RestClient(option);
             var request = new RestRequest();
             request.Method = Method.Get;
             request.AddHeader("Ocp-Apim-Subscription-Key", "<Ocp-Apim-Subscription-Key>");
-            request.AddHeader("Authorization", "Bearer "+access_token);
+            request.AddHeader("Authorization", "Bearer " + access_token);
             RestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
         }
