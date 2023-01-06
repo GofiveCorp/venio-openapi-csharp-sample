@@ -142,7 +142,7 @@ namespace VenioOpenApiSample
             request.Method = Method.Post;
             ProductsRequest products = new ProductsRequest();
             products.Take = 5;
-            products.Status = new bool[] { true };
+            products.Status = new int[] { 1 };
             request.AddHeader("Ocp-Apim-Subscription-Key", "<Ocp-Apim-Subscription-Key>");
             request.AddHeader("Authorization", "Bearer " + access_token);
             request.AddHeader("Content-Type", "application/json");

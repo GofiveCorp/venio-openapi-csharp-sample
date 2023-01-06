@@ -277,7 +277,7 @@ namespace VenioOpenApiSample.Models
         /// สถานะสินค้า
         /// </summary>
         [JsonProperty("status")]
-        public bool[] Status { get; set; }
+        public int[] Status { get; set; }
 
         /// <summary>
         /// จำนวนรายการสินค้าที่อยากแสดง
