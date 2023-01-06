@@ -34,6 +34,7 @@ namespace VenioOpenApiSample
             customerRequest01.CustomerGroupName = "CRM";
             customerRequest01.ClassificationName = "S";
             customerRequest01.CustomerBirthdate = "2000-06-04";
+            customerRequest01.CustomerIncome = "1000";
             customerRequest01.Addresses = new Address[] {
             new Address{
                 LocationAddress="SamutSakhon",
@@ -48,7 +49,7 @@ namespace VenioOpenApiSample
             customerRequest01.LeadStatus = 4;
             customerRequest01.Contacts = new Contact[]{ new Contact{
 
-                    ContactName="Contact002",
+                    ContactName="Contact004",
                     ContactBirthdate="2000-06-04",
                     ContactStatus=true,
                     ContactPosition="Intern"

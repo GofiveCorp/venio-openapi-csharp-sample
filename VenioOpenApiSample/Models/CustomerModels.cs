@@ -88,7 +88,7 @@ namespace VenioOpenApiSample.Models
         public string CustomerGroupName { get; set; }
 
         [JsonProperty("customerIncome", NullValueHandling = NullValueHandling.Ignore)]
-        public double? CustomerIncome { get; set; }
+        public string? CustomerIncome { get; set; }
 
         /// <summary>
         /// สถานภาพสมรส [1 = Single , 2 = Engaged , 3 = Married , 4 = Separated , 5 = Disvorced , 6 =
